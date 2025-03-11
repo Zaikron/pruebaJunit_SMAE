@@ -7,13 +7,33 @@ import votos.models.Partido;
 import java.util.Properties;
 
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UrnaTest {
 
+    @BeforeEach
+    void initMetodoTest(){
+        System.out.println("Iniciando el metodo");
+    }
 
+    @AfterEach
+    void tearDown(){
+        System.out.println("Finalizando");
+    }
+
+
+    @BeforeAll
+    void beforeAll(){
+        System.out.println("Inicializando el test");
+    }
+
+    @AfterAll
+    void afterAll(){
+        System.out.println("Finalizando el test");
+    }
 
     @Test
     @DisplayName("Votos de urna")
-    void testSaldoCuenta() {
+    void testVotosCandidato() {
         Urna urna = new Urna("Javier", 25);
         Assertions.assertNotNull(urna.getVotos());
         Assertions.assertEquals(25, urna.getVotos());
@@ -23,7 +43,7 @@ public class UrnaTest {
 
     @Test
     @DisplayName("Probando el nombre del candidato")
-    void testNombreCuenta() {
+    void testNombreCandidato() {
         Urna urna = new Urna("Javier", 24);
         //cuenta.setPersona("Javier");
         String esperado = "Javier";
@@ -36,7 +56,7 @@ public class UrnaTest {
 
     @Test
     @DisplayName("Relacion de Candidatos y partido")
-    void testRelacionBancoCuentas() {
+    void testRelacionPartidoCandidatos() {
         Urna urna1 = new Urna("Javier", 50);
         Urna urna2 = new Urna("Efrain Razo", 23);
         Partido partido = new Partido();
